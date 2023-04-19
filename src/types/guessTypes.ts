@@ -1,24 +1,19 @@
 import { generateRandomNumber } from "../utils/test"
 
-export interface GuessNumber {
-    guess : number
-}
-
 export interface Guess{
-    guessNumber : GuessNumber[],
+    guessNumber : string,
     correctNumber: number,
     correctPosition: number,
 }
 
 export const initalState: Guess = {
-    guessNumber : [],
-    correctNumber: Number(generateRandomNumber()),
+    guessNumber : "",
+    correctNumber:0,
     correctPosition: 0,
 }
 
-export type GuessAction = {
-    type: string,
-    guessNumber?: GuessNumber
-    guessNumbe?: Guess
-}
-export type DispatchType = (args: GuessAction) => GuessAction
+export type MakeGuessAction = {
+  type: string;
+  payload: string;
+};
+export type DispatchType = (args: MakeGuessAction) => MakeGuessAction;

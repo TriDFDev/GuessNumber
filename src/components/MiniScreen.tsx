@@ -2,17 +2,14 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from '../store/reducers/__index'
-import { guess, guessNumber } from '../types/guessTypes'
-
-const MiniScreen = () => {
-    const guessNumber =  useSelector(
-      (state: RootState) => state.guess
-    )
-
+import { Guess } from '../types/guessTypes'
+interface props {
+  guessNumber: string
+}
+const MiniScreen = (prop: props) => {
   return (
     <View style={styles.container}>
-      
-     <Text style={styles.text}>{guessNumber.guessNumber.map((item: guessNumber) => item.guess)}</Text>
+     <Text style={styles.text}>{prop.guessNumber}</Text>
     </View>
   )
 }

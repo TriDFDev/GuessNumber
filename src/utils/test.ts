@@ -14,7 +14,6 @@ export function generateRandomNumber(): string {
   return num;
 }
 
-console.log(Number(generateRandomNumber()));
 
 
 

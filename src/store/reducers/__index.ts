@@ -5,7 +5,7 @@ import turnGuessReducer from "./turnGuessReducer";
 export const rootReducer = combineReducers(
     {
         guess: guessReducer,
-        // turnGuessReducer: turnGuessReducer
+        turnGuessReducer: turnGuessReducer
     }
 )
 

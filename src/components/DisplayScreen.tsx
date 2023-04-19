@@ -1,5 +1,8 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import { useSelector } from 'react-redux'
+import { RootState } from '../store/reducers/__index'
+import { Guess } from '../types/guessTypes'
 
 const DisplayScreen = () => {
   return (
@@ -18,17 +21,19 @@ const DisplayScreen = () => {
           </View>
         </View>
 
-        <View style={[styles.TableBody, styles.TableBase]}>
+      
+          <View style={[styles.TableBody, styles.TableBase]}>
           <View style={[styles.columnBody, styles.column1]}>
-            <Text style={[styles.TextBase,]}>1576</Text>
+            <Text style={[styles.TextBase,]}></Text>
             </View>
           <View style={[styles.columnBody, styles.column2]}>
-            <Text style={[styles.TextBase,]}>4</Text>
+            <Text style={[styles.TextBase,]}></Text>
             </View>
           <View style={[styles.columnBody, styles.column2]}>
-            <Text style={[styles.TextBase,]}>0</Text>
+            <Text style={[styles.TextBase,]}></Text>
             </View>
         </View>
+
       </View>
     </View>
   )
