@@ -9,7 +9,7 @@ export interface TurnGuess {
 }
 
 export const initalTurnState: TurnGuess = {
-  numberToGuess: Number(generateRandomNumber()),
+  numberToGuess: 0,
   remainingGuesses: 10,
   status: 'Playing',
   guessed: [],
@@ -17,11 +17,17 @@ export const initalTurnState: TurnGuess = {
 
 export type TurnGuessAction = {
   type: string;
-  payload: TurnGuess;
+  payload: any;
 };
 
 export interface StartGameAction {
   type: string;
   payload: number;
 }
+
+export interface saveGuessData{
+  type: string;
+  payload: TurnGuess
+}
+
 export type turnDispatchType = (args: TurnGuessAction) => TurnGuessAction;

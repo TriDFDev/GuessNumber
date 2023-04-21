@@ -1,14 +1,13 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
-import Key from './Key'
 import { useDispatch, useSelector } from 'react-redux'
-import { Dispatch } from "redux"
+
+import Key from './Key'
 import {  addGuessNumber } from '../store/actions/guessActionCreate'
 import { RootState } from '../store/reducers/__index'
-// import { newGuessNumber } from '../store/actions/turnGuessActionCreater'
 import MiniScreen from './MiniScreen'
-import { resetGame, startGame } from '../store/actions/turnGuessActionCreater'
-import { generateRandomNumber } from '../utils/test'
+import {resetGame } from '../store/actions/turnGuessActionCreater'
+
 const KeyValues = [
     {
         lable: "1",
@@ -51,6 +50,7 @@ const KeyValues = [
 ]    
 
 const KeyBoard = () => {
+
     const [number, setNumber] = useState<string>('');  
     const handleKey = (key: string) => {
         var theNumber = number + key
@@ -73,14 +73,16 @@ const KeyBoard = () => {
     const dispatch = useDispatch()
 
    const handleSend = () => {
-    dispatch(addGuessNumber(number))
-    setNumber('')
-    dispatch(startGame(10))
+    if(number.length===4){
+        dispatch(addGuessNumber(Number(number)))
+        setNumber('')
+    }
    }
     
    const handleStarGame = () => {
     dispatch(resetGame())
    }
+
   return (
     <View style={{width: "100%", height: '100%', flex: 1, }}>
         <MiniScreen guessNumber={number}/>
@@ -90,13 +92,12 @@ const KeyBoard = () => {
             <Key lable={lable} onPress={() => handleKey(value)}/>
         </View>)
         }
-
       </View>
       <View style={styles.right}>
             <View style={{width:"100%", height: 55, flexGrow:1}}>
             <Key style={{
                     backgroundColor:'#FB5555',
-            }} lable='Clear' onPress={() => handleStarGame()}/>
+            }} lable='Clear' onPress={() => clearKey()}/>
         </View>
         <View style={{width:"100%", height: 110,flexGrow:3}}>
             <Key lable='Enter' onPress={() => handleSend()} />
@@ -116,7 +117,6 @@ const styles = StyleSheet.create({
         gap: 10,
         display:'flex',
         flexDirection:'row',
-        
     },
     left:{
         width:'50%',
@@ -126,15 +126,12 @@ const styles = StyleSheet.create({
         gap:10,
         display:'flex',
         flexDirection:'row',
-        
     },
     right: {
-        // width: '100%']
         height: "100%",
         flexGrow: 3,
         gap: 10,
         display:'flex',
         flexDirection:"column",
-        
     }
 })

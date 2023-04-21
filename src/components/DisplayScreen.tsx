@@ -5,6 +5,8 @@ import { RootState } from '../store/reducers/__index'
 import { Guess } from '../types/guessTypes'
 
 const DisplayScreen = () => {
+  const Guessed = useSelector((state: RootState) => state.turnGuessReducer.guessed)
+    
   return (
     <View style={[styles.container,styles.shadow]}>
       <View style={styles.table}>
@@ -22,17 +24,18 @@ const DisplayScreen = () => {
         </View>
 
       
-          <View style={[styles.TableBody, styles.TableBase]}>
+       {Guessed.map((item: Guess, index:any) =>   
+        <View key={index} style={[styles.TableBody, styles.TableBase]}>
           <View style={[styles.columnBody, styles.column1]}>
-            <Text style={[styles.TextBase,]}></Text>
+            <Text style={[styles.TextBase,]}>{item.guessNumber}</Text>
             </View>
           <View style={[styles.columnBody, styles.column2]}>
-            <Text style={[styles.TextBase,]}></Text>
+            <Text style={[styles.TextBase,]}>{item.correctNumber}</Text>
             </View>
           <View style={[styles.columnBody, styles.column2]}>
-            <Text style={[styles.TextBase,]}></Text>
+            <Text style={[styles.TextBase,]}>{item.correctPosition}</Text>
             </View>
-        </View>
+        </View>) }
 
       </View>
     </View>

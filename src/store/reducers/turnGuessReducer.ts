@@ -13,15 +13,20 @@ const turnGuessReducer = (
 ) => {
 
   switch (action.type) {
-    case actionTypes.START_GAME: 
+    case actionTypes.SET_GUESS_NUMBER: 
       return {
         ...state,
-        // numberToGuess: action.payload,
-        remainingGuesses: 5,
-        status: 'Playing',
-        guessed: [],
+        numberToGuess: action.payload,
       };
     
+    case actionTypes.MAKE_GUESS : 
+      return {
+        ...state,
+        status: action.payload.status,
+        guessed: state.guessed.concat(action.payload.guessNumber),
+        remainingGuesses: state.remainingGuesses - 1,
+      };
+
     case actionTypes.RESET_GAME: 
       return{
         ...initalTurnState

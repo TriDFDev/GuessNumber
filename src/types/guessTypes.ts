@@ -14,6 +14,11 @@ export const initalState: Guess = {
 
 export type MakeGuessAction = {
   type: string;
-  payload: string;
+  payload: number;
 };
+
+export type CheckGuessAction = {
+  type: string,
+  payload: {}
+}
 export type DispatchType = (args: MakeGuessAction) => MakeGuessAction;
